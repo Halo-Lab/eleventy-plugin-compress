@@ -7,11 +7,7 @@ import { deflate } from './deflate';
 import { makeDirectories } from './mkdir';
 import { CompressAlgorithm } from './types';
 import { done, oops, start } from './pretty';
-import {
-  PLUGIN_NAME,
-  SCRIPTS_LINK_REGEXP,
-  STYLESHEET_LINK_REGEXP,
-} from './constants';
+import { SCRIPTS_LINK_REGEXP, STYLESHEET_LINK_REGEXP } from './constants';
 
 const COMPRESSOR_FUNCTIONS = {
   gzip,
@@ -51,7 +47,7 @@ export const compressHTMLWithLinks = async (
       return Promise.all(
         contents.map((info) =>
           info.then(({ data, url }) => {
-            start(PLUGIN_NAME, `Start to compress "${url}" file`);
+            start(`Start to compress "${url}" file`);
 
             makeDirectories(url)
               .then(() => compressor(data, url))
@@ -59,10 +55,9 @@ export const compressHTMLWithLinks = async (
               .then(
                 () =>
                   done(
-                    PLUGIN_NAME,
                     `"${url}" file was successfully compressed and written to disk`
                   ),
-                (error) => oops(PLUGIN_NAME, error)
+                oops
               );
           })
         )
