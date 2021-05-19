@@ -49,7 +49,7 @@ interface CompressPluginOptions {
 }
 ```
 
-You can choose one or some algorithms to compress assets. By default, `brotli` is used.
+You can choose one of some algorithms to compress assets. By default, `brotli` is used.
 
 > For proper work of this plugin, it is assumed that in time of compiling HTML all CSS and JavaScript are already processed and folded into [_output_](https://www.11ty.dev/docs/config/#output-directory) directory.
 

@@ -1,9 +1,12 @@
+import { join, dirname } from 'path';
+
 import { rip } from './rip';
 import { read } from './read';
 import { gzip } from './gzip';
 import { write } from './write';
 import { brotli } from './brotli';
 import { deflate } from './deflate';
+import { isRelative } from './is_relative';
 import { makeDirectories } from './mkdir';
 import { CompressAlgorithm } from './types';
 import { done, oops, start } from './pretty';
@@ -31,12 +34,16 @@ export const compressHTMLWithLinks = async (
   const contents = [Promise.resolve({ data: content, url: outputPath })]
     .concat(
       rip(content, STYLESHEET_LINK_REGEXP).map((link) =>
-        read(buildDirectory, link)
+        read(
+          join(isRelative(link) ? dirname(outputPath) : buildDirectory, link)
+        )
       )
     )
     .concat(
       rip(content, SCRIPTS_LINK_REGEXP).map((link) =>
-        read(buildDirectory, link)
+        read(
+          join(isRelative(link) ? dirname(outputPath) : buildDirectory, link)
+        )
       )
     );
 
