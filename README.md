@@ -1,5 +1,7 @@
 # eleventy-plugin-compress 👜
 
+**⚠️ This code moves to [the new location](https://github.com/Halo-Lab/eleventy-packages). Please, refer there to get a new development status.**
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 Compresses HTML and assets (CSS, JavaScript) that are referenced from it with [`brotli`](https://brotli.org), [`gzip`](http://www.gzip.org) and [`deflate`](https://en.wikipedia.org/wiki/Deflate) algorithms.
